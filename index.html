@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>เป็นแฟนกันไหม 💖</title>
+
+<!-- ============================================
+     GOOGLE FONTS — Poppins (Latin) + Noto Sans Thai
+     ============================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- =========================================
+       AMBIENT LAYERS — floating hearts + sparkles
+       These are injected/animated continuously by script.js
+       ========================================= -->
+  <div class="hearts-layer" id="heartsLayer" aria-hidden="true"></div>
+  <div class="sparkles-layer" id="sparklesLayer" aria-hidden="true"></div>
+
+  <!-- =========================================
+       BACKGROUND MUSIC
+       🎵 CUSTOMIZE: replace the src below with your own mp3 path
+       This <audio> tag lives OUTSIDE the sections so it NEVER
+       gets recreated / restarted when we switch sections.
+       ========================================= -->
+  <audio id="bgMusic" loop preload="auto">
+    <!-- 🎵 REPLACE THIS SRC WITH YOUR OWN MUSIC FILE -->
+    <source src="music/maprangs.wav" type="audio/mpeg">
+  </audio>
+
+  <!-- Floating music toggle button -->
+  <button class="music-toggle" id="musicToggle" title="เปิด/ปิดเพลง" aria-label="Toggle music">
+    <span id="musicIcon">🔇</span>
+  </button>
+
+  <!-- =========================================
+       APP CONTAINER — holds all 5 "pages" (sections)
+       ========================================= -->
+  <main class="app" id="app">
+
+    <!-- ============ PAGE 1 : INTRO ============ -->
+    <section class="page active" id="page1" data-page="1">
+      <div class="card pop-in">
+        <div class="bounce-icon">🌸💗</div>
+        <!-- 🖼️ CUSTOMIZE: swap the emoji/image below for your own cute picture -->
+        <img src="images/ใหม่.jpg" alt="รูปคู่รัก" class="story-image">
+        <h1 class="title">สวัสดีคนพิเศษของเค้า~</h1>
+        <p class="subtitle">เค้ามีอะไรจะบอกอ้วนด้วยนะ...</p>
+        <button class="btn btn-primary next-btn" data-next="2">
+          เริ่มเลย 💌
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ PAGE 2 ============ -->
+    <section class="page" id="page2" data-page="2">
+      <div class="card pop-in">
+        <div class="hero-image" id="img2">🐻✨</div>
+        <img src="images/img4.jpg" alt="รูปคู่รัก" class="story-image">
+        <p class="story-text suspense-text">
+          ตั้งแต่ครั้งแรกที่เค้าเจอมะปราง...<br>
+          ใจมันเต้นแรงขึ้นทุกทีเลยนะ 🥹<br>
+          พอต้องห่างกันก็คิดถึงตลอดเวลาเลย 💕
+        </p>
+        <button class="btn btn-primary next-btn" data-next="3">
+          ไปต่อ 💕
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ PAGE 3 ============ -->
+    <section class="page" id="page3" data-page="3">
+      <div class="card pop-in">
+        <div class="hero-image" id="img3">🧸🎀</div>
+        <img src="images/img5.jpg" alt="รูปคู่รัก" class="story-image">
+        <p class="story-text suspense-text">
+          เค้าอยากอยู่ข้างๆ อ้วนไปนานๆ 💗<br>
+          อ้วนเป็นคนที่น่ารักมากเลยนะ 🥰<br>
+          รับฟังและอยู่กับเค้าทั้งตอนทุกข์หรือตอนมีความสุข 💖<br>
+        </p>
+        <button class="btn btn-primary next-btn" data-next="4">
+          ไปต่ออีกนิด 🌷
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ PAGE 4 : SUSPENSE ============ -->
+    <section class="page" id="page4" data-page="4">
+      <div class="card pop-in">
+        <div class="hero-image shake-soft" id="img4">🙈💭</div>
+        <img src="images/กลจ.jpg" alt="รูปคู่รัก" class="story-image">
+        <p class="story-text suspense-text">
+          อ้วนคอยให้กำลังใจเค้าเวลาเค้ารู้สึกแย่<br>
+          คอยเตือนสติเรื่องต่างๆให้เค้าโตขึ้น<br>
+          และไม่เคยว่าหรือกดดันในตัวเค้าเลย😳
+        </p>
+        <button class="btn btn-primary next-btn" data-next="5">
+          ไปต่ออีกนิดน้าา 💕
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ PAGE 5============ -->
+    <section class="page" id="page5" data-page="5">
+      <div class="card pop-in">
+        <div class="hero-image shake-soft" id="img5">🙈💭</div>
+        <img src="images/ดำ3.jpg" alt="รูปคู่รัก" class="story-image">
+        <p class="story-text suspense-text">
+          ไม่รู้ว่าตอนนี้เธอมั่นใจในเค้าแค่ไหน<br>
+          แต่ตอนนี้เค้าต้องการมีเธออยู่ด้วย<br>
+          ในสถานะแฟนแล้ว.. 😳
+        </p>
+        <button class="btn btn-primary next-btn" data-next="6">
+          อีกนิดเดียวแย้ว 🌷
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ PAGE 6============ -->
+    <section class="page" id="page6" data-page="6">
+      <div class="card pop-in">
+        <div class="hero-image shake-soft" id="img6">💕</div>
+        <img src="images/img1.jpg" alt="รูปคู่รัก" class="story-image">
+        <p class="story-text suspense-text">
+          งั้นเค้าไม่อ้อมค้อมแล้วนะคะ...<br>
+          เค้ามีอะไรจะถามเธอหน่อย<br>
+          ใจเต้นแรงมากเลยอ้าาา... 😳
+        </p>
+        <button class="btn btn-primary next-btn" data-next="7">
+          ถามเลยละกัน 🥺
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ PAGE 7 : THE QUESTION ============ -->
+    <section class="page" id="page7" data-page="7">
+      <div class="card pop-in final-card">
+        <div class="hero-image big-heart">💖</div>
+        <h2 class="question-title">เป็นแฟนกันไหม 💖</h2>
+
+        <div class="button-row" id="buttonRow">
+          <button class="btn btn-yes" id="yesBtn">ตกลง 💕</button>
+          <button class="btn btn-no" id="noBtn">ไม่ 😢</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================
+       YES POPUP MODAL
+       ========================================= -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal bounce-in" id="modalBox">
+      <div class="modal-emoji">💖</div>
+      <h2 class="modal-title">Love letter!! 🎉</h2>
+      <p class="modal-text">
+        ตั้งแต่นี้เธอเป็นแฟนเค้าแล้วนะ<br>
+        01/08/2026<br>
+        ขอบคุณที่ตอบตกลงนะคะ<br>
+        รักปุ๋งที่สุดเลย ❤️
+      </p>
+      <button class="btn btn-primary" id="closeModalBtn">ปิด 💌</button>
+    </div>
+  </div>
+
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
