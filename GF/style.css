@@ -1,0 +1,443 @@
+/* =========================================================
+   CONFIGURATION — all colors, sizes & easing live here.
+   Change these variables to re-theme the whole site instantly.
+   ========================================================= */
+:root {
+  /* 🎨 CUSTOMIZE COLORS HERE */
+  --pink-50:  #fff5f9;
+  --pink-100: #ffe4ef;
+  --pink-200: #ffc9de;
+  --pink-300: #ffa6c9;
+  --pink-400: #ff86b3;
+  --pink-500: #ff5c9c;
+  --lilac:    #e9d5ff;
+  --sky:      #cdeeff;
+  --cream:    #fff9f0;
+  --text-dark: #6b3a52;
+  --text-soft: #9a6b82;
+  --white: #ffffff;
+
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --radius-sm: 12px;
+
+  --shadow-soft: 0 10px 30px rgba(255, 134, 179, 0.25);
+  --shadow-hover: 0 14px 40px rgba(255, 92, 156, 0.35);
+
+  --ease-bounce: cubic-bezier(.68, -0.55, .27, 1.55);
+  --ease-smooth: cubic-bezier(.4, 0, .2, 1);
+
+  /* Fonts */
+  --font-display: 'Poppins', 'Noto Sans Thai', sans-serif;
+  --font-body: 'Noto Sans Thai', 'Poppins', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  /* =========================================================
+     MOVING PASTEL GRADIENT BACKGROUND
+     🎨 CUSTOMIZE: change these colors for a different mood
+     ========================================================= */
+  background: linear-gradient(
+    -45deg,
+    var(--pink-100),
+    var(--lilac),
+    var(--sky),
+    var(--pink-200)
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 14s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* =========================================================
+   FLOATING HEARTS & SPARKLES LAYERS
+   ========================================================= */
+.hearts-layer,
+.sparkles-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -10%;
+  font-size: 1.5rem;
+  opacity: 0.85;
+  animation-name: floatUp;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  filter: drop-shadow(0 0 6px rgba(255, 150, 190, 0.6));
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 0.9; }
+  50% {
+    transform: translateY(-55vh) translateX(20px) rotate(15deg);
+  }
+  90% { opacity: 0.7; }
+  100% {
+    transform: translateY(-110vh) translateX(-10px) rotate(-10deg);
+    opacity: 0;
+  }
+}
+
+.sparkle {
+  position: absolute;
+  font-size: 1rem;
+  animation: sparkleTwinkle 2.2s ease-in-out infinite;
+  opacity: 0;
+}
+
+@keyframes sparkleTwinkle {
+  0%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.2) rotate(90deg); }
+}
+
+/* =========================================================
+   MUSIC TOGGLE BUTTON
+   ========================================================= */
+.music-toggle {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 50;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s var(--ease-bounce);
+}
+
+.music-toggle:hover {
+  transform: scale(1.12) rotate(8deg);
+}
+
+/* =========================================================
+   APP / PAGE STRUCTURE
+   ========================================================= */
+.app {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 480px;
+  padding: 24px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page {
+  display: none;
+  width: 100%;
+  text-align: center;
+}
+
+.page.active {
+  display: block;
+  animation: fadeIn 0.6s var(--ease-smooth);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.page.fade-out {
+  animation: fadeOut 0.35s var(--ease-smooth) forwards;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-14px); }
+}
+
+/* =========================================================
+   CARD
+   ========================================================= */
+.card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-lg);
+  padding: 44px 30px;
+  box-shadow: var(--shadow-soft);
+  border: 2px solid var(--pink-100);
+  position: relative;
+}
+
+.pop-in {
+  animation: popIn 0.55s var(--ease-bounce);
+}
+
+@keyframes popIn {
+  0%   { transform: scale(0.7); opacity: 0; }
+  60%  { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+/* =========================================================
+   TEXT ELEMENTS
+   ========================================================= */
+.bounce-icon {
+  font-size: 2.4rem;
+  animation: bounce 1.6s ease-in-out infinite;
+  margin-bottom: 6px;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.hero-image {
+  font-size: 5rem;
+  margin: 10px 0 20px;
+  line-height: 1;
+  filter: drop-shadow(0 8px 14px rgba(255, 134, 179, 0.35));
+}
+
+.shake-soft {
+  animation: shakeSoft 2.4s ease-in-out infinite;
+}
+
+@keyframes shakeSoft {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-4deg); }
+  75% { transform: rotate(4deg); }
+}
+
+.big-heart {
+  font-size: 4.5rem;
+  animation: pulseHeart 1.4s ease-in-out infinite;
+}
+
+@keyframes pulseHeart {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--pink-500);
+  margin-bottom: 10px;
+  text-shadow: 0 2px 0 var(--white);
+}
+
+.subtitle,
+.story-text {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--text-soft);
+  line-height: 1.7;
+  margin-bottom: 26px;
+}
+
+.suspense-text {
+  color: var(--pink-500);
+  font-weight: 600;
+}
+
+.question-title {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--pink-500);
+  margin: 8px 0 30px;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+.btn {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  border-radius: 50px;
+  padding: 14px 32px;
+  cursor: pointer;
+  transition: transform 0.25s var(--ease-bounce), box-shadow 0.25s var(--ease-smooth), background 0.25s;
+  box-shadow: var(--shadow-soft);
+}
+
+.btn:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: var(--shadow-hover);
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--pink-400), var(--pink-500));
+  color: var(--white);
+}
+
+.button-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  position: relative;
+  min-height: 80px;
+}
+
+.btn-yes {
+  background: linear-gradient(135deg, var(--pink-400), var(--pink-500));
+  color: var(--white);
+  position: relative;
+  z-index: 10;
+  transition: transform 0.35s var(--ease-bounce), font-size 0.35s var(--ease-bounce), padding 0.35s var(--ease-bounce), box-shadow 0.25s;
+}
+
+.btn-no {
+  background: var(--white);
+  color: var(--text-soft);
+  border: 2px solid var(--pink-200);
+  position: relative;
+  z-index: 1;
+  transition: transform 0.2s var(--ease-smooth), opacity 0.2s;
+}
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 200, 220, 0.35);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s var(--ease-smooth);
+  padding: 20px;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 40px 32px;
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+  box-shadow: var(--shadow-hover);
+  border: 3px solid var(--pink-200);
+}
+
+.bounce-in {
+  animation: modalBounce 0.6s var(--ease-bounce);
+}
+
+@keyframes modalBounce {
+  0%   { transform: scale(0.3) translateY(40px); opacity: 0; }
+  60%  { transform: scale(1.08) translateY(-6px); opacity: 1; }
+  100% { transform: scale(1) translateY(0); }
+}
+
+.modal-emoji {
+  font-size: 3.2rem;
+  animation: pulseHeart 1s ease-in-out infinite;
+  margin-bottom: 8px;
+}
+
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--pink-500);
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+.modal-text {
+  color: var(--text-soft);
+  line-height: 1.8;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 420px) {
+  .card { padding: 34px 20px; }
+  .title { font-size: 1.6rem; }
+  .question-title { font-size: 1.4rem; }
+  .hero-image { font-size: 4rem; }
+  .btn { padding: 12px 24px; font-size: 0.95rem; }
+}
+
+@media (min-width: 768px) {
+  .app { max-width: 520px; }
+  .card { padding: 54px 46px; }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+.story-image {
+  max-width: 100%;
+  width: 250px;
+  border-radius: 16px;
+  margin: 16px auto;
+  display: block;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  height: 250px;
+  object-fit: cover; /* ครอปให้เต็มโดยไม่บิดเบี้ยว */
+}
